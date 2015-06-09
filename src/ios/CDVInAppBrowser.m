@@ -594,7 +594,7 @@
     
     [self.toolbar setItems:@[self.closeButton, flexibleSpaceButton, self.shareButton]]; // SBZ HACK
 
-    self.view.backgroundColor = [UIColor blackColor]; // SBZ HACK TO SET BG OF STATUS BAR
+    self.view.backgroundColor = [UIColor grayColor];
     [self.view addSubview:self.toolbar];
     [self.view addSubview:self.addressLabel];
     [self.view addSubview:self.spinner];
@@ -1030,7 +1030,7 @@
     // simplified from: http://stackoverflow.com/a/25669695/219684
 
     UIToolbar* bgToolbar = [[UIToolbar alloc] initWithFrame:frame];
-    bgToolbar.barStyle = UIBarStyleDefault;
+    bgToolbar.barStyle = UIBarStyleBlack; // SBZ HACK
     [self.view addSubview:bgToolbar];
 
     [super viewDidLoad];
