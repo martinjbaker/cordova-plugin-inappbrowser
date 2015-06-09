@@ -1031,6 +1031,7 @@
 
     UIToolbar* bgToolbar = [[UIToolbar alloc] initWithFrame:frame];
     bgToolbar.barStyle = UIBarStyleBlack; // SBZ HACK
+    bgToolbar.translucent = NO; // SBZ HACK
     [self.view addSubview:bgToolbar];
 
     [super viewDidLoad];
