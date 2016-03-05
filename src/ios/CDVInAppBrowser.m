@@ -536,7 +536,7 @@
     [self.spinner stopAnimating];
 
     self.closeButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(close)];
-    self.closeButton.tintColor = [UIColor whiteColor]; // SBZ HACK
+    self.closeButton.tintColor = [UIColor colorWithRed:1.0 green:0.79 blue:0.0 alpha:1.0]; // SBZ HACK
     self.closeButton.enabled = YES;
 
     UIBarButtonItem* flexibleSpaceButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
@@ -606,7 +606,7 @@
     self.shareButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction
                                                                      target:self
                                                                      action:@selector(sharePage)];
-    self.shareButton.tintColor = [UIColor whiteColor];
+    self.shareButton.tintColor = [UIColor colorWithRed:1.0 green:0.79 blue:0.0 alpha:1.0]; // SBZ HACK
     self.shareButton.enabled = YES;
     
     [self.toolbar setItems:@[self.closeButton, flexibleSpaceButton, self.shareButton]]; // SBZ HACK
