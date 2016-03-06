@@ -527,7 +527,7 @@
     self.spinner.clipsToBounds = YES; // SBZ HACK
     self.spinner.contentMode = UIViewContentModeScaleToFill;
     // self.spinner.frame = CGRectMake(CGRectGetMidX(self.webView.frame), CGRectGetMidY(self.webView.frame), 20.0, 20.0);
-    self.spinner.frame = CGRectMake(webViewBounds.size.width - 80.0, 30.0, 24.0, 24.0); // SBZ HACK
+    self.spinner.frame = CGRectMake(CGRectGetMidX(self.webView.frame) - 12.0, 30.0, 24.0, 24.0); // SBZ HACK
     self.spinner.hidden = YES; // SBZ HACK (WAS NO)
     self.spinner.hidesWhenStopped = YES;
     self.spinner.multipleTouchEnabled = NO;
@@ -609,7 +609,7 @@
     self.shareButton.tintColor = [UIColor colorWithRed:1.0 green:0.79 blue:0.0 alpha:1.0]; // SBZ HACK
     self.shareButton.enabled = YES;
     
-    [self.toolbar setItems:@[self.closeButton, flexibleSpaceButton, self.shareButton]]; // SBZ HACK
+    [self.toolbar setItems:@[self.shareButton, flexibleSpaceButton, self.closeButton]]; // SBZ HACK
 
     self.view.backgroundColor = [UIColor grayColor];
     [self.view addSubview:self.toolbar];
@@ -629,10 +629,10 @@
     self.closeButton = nil;
     self.closeButton = [[UIBarButtonItem alloc] initWithTitle:title style:UIBarButtonItemStyleBordered target:self action:@selector(close)];
     self.closeButton.enabled = YES;
-    self.closeButton.tintColor = [UIColor colorWithRed:60.0 / 255.0 green:136.0 / 255.0 blue:230.0 / 255.0 alpha:1];
+    self.closeButton.tintColor = [UIColor colorWithRed:1.0 green:0.79 blue:0.0 alpha:1.0]; // SBZ HACK
 
     NSMutableArray* items = [self.toolbar.items mutableCopy];
-    [items replaceObjectAtIndex:0 withObject:self.closeButton];
+    [items replaceObjectAtIndex:2 withObject:self.closeButton]; // SBZ HACK WAS INDEX OF 0
     [self.toolbar setItems:items];
 }
 
