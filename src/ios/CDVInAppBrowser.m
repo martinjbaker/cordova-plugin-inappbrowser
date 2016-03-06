@@ -519,22 +519,6 @@
     self.webView.scalesPageToFit = NO;
     self.webView.userInteractionEnabled = YES;
 
-    self.spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    self.spinner.alpha = 1.000;
-    self.spinner.autoresizesSubviews = YES;
-    self.spinner.autoresizingMask = (UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleRightMargin);
-    self.spinner.clearsContextBeforeDrawing = NO;
-    self.spinner.clipsToBounds = YES; // SBZ HACK
-    self.spinner.contentMode = UIViewContentModeScaleToFill;
-    // self.spinner.frame = CGRectMake(CGRectGetMidX(self.webView.frame), CGRectGetMidY(self.webView.frame), 20.0, 20.0);
-    self.spinner.frame = CGRectMake(CGRectGetMidX(self.webView.frame) - 12.0, 30.0, 24.0, 24.0); // SBZ HACK
-    self.spinner.hidden = YES; // SBZ HACK (WAS NO)
-    self.spinner.hidesWhenStopped = YES;
-    self.spinner.multipleTouchEnabled = NO;
-    self.spinner.opaque = NO;
-    self.spinner.userInteractionEnabled = NO;
-    [self.spinner stopAnimating];
-
     self.closeButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(close)];
     self.closeButton.tintColor = [UIColor colorWithRed:1.0 green:0.79 blue:0.0 alpha:1.0]; // SBZ HACK
     self.closeButton.enabled = YES;
@@ -560,6 +544,23 @@
     self.toolbar.opaque = YES; // SBZ HACK
     self.toolbar.translucent = NO; // SBZ HACK
     self.toolbar.userInteractionEnabled = YES;
+    
+    self.spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    self.spinner.color = [UIColor colorWithRed:1.0 green:0.79 blue:0.0 alpha:1.0]; // SBZ HACK
+    self.spinner.alpha = 1.000;
+    self.spinner.autoresizesSubviews = YES;
+    self.spinner.autoresizingMask = (UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleRightMargin);
+    self.spinner.clearsContextBeforeDrawing = NO;
+    self.spinner.clipsToBounds = YES; // SBZ HACK
+    self.spinner.contentMode = UIViewContentModeScaleToFill;
+    self.spinner.frame = CGRectMake(CGRectGetMidX(self.toolbar.frame) - 12.0, 10.0, 24.0, 24.0); // SBZ HACK TO CENTER SPINNER INSIDE TOOLBAR FRAME
+    self.spinner.hidden = NO;
+    self.spinner.hidesWhenStopped = YES;
+    self.spinner.multipleTouchEnabled = NO;
+    self.spinner.opaque = NO;
+    self.spinner.userInteractionEnabled = NO;
+    [self.spinner stopAnimating];
+    [self.toolbar addSubview:self.spinner];
 
     CGFloat labelInset = 5.0;
     float locationBarY = toolbarIsAtBottom ? self.view.bounds.size.height - FOOTER_HEIGHT : self.view.bounds.size.height - LOCATIONBAR_HEIGHT;
@@ -614,11 +615,10 @@
     self.view.backgroundColor = [UIColor grayColor];
     [self.view addSubview:self.toolbar];
     [self.view addSubview:self.addressLabel];
-    [self.view addSubview:self.spinner];
 }
 
 - (void) setWebViewFrame : (CGRect) frame {
-    NSLog(@"Setting the WebView's frame to %@", NSStringFromCGRect(frame));
+//    NSLog(@"Setting the WebView's frame to %@", NSStringFromCGRect(frame));
     [self.webView setFrame:frame];
 }
 
@@ -627,7 +627,7 @@
     // the advantage of using UIBarButtonSystemItemDone is the system will localize it for you automatically
     // but, if you want to set this yourself, knock yourself out (we can't set the title for a system Done button, so we have to create a new one)
     self.closeButton = nil;
-    self.closeButton = [[UIBarButtonItem alloc] initWithTitle:title style:UIBarButtonItemStyleBordered target:self action:@selector(close)];
+    self.closeButton = [[UIBarButtonItem alloc] initWithTitle:title style:UIBarButtonItemStylePlain target:self action:@selector(close)];
     self.closeButton.enabled = YES;
     self.closeButton.tintColor = [UIColor colorWithRed:1.0 green:0.79 blue:0.0 alpha:1.0]; // SBZ HACK
 
@@ -1050,7 +1050,7 @@
 - (void) viewDidLoad {
 
     CGRect frame = [UIApplication sharedApplication].statusBarFrame;
-
+    
     // simplified from: http://stackoverflow.com/a/25669695/219684
 
     UIToolbar* bgToolbar = [[UIToolbar alloc] initWithFrame:[self invertFrameIfNeeded:frame]];
